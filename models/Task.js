@@ -6,19 +6,20 @@ const TaskSchema = mongoose.Schema(
             type: String,
             required: true,
         },
-        type: {
+        taskType: {
             type: String,
             required: true,
+            enum: ["story", "bug"],
         },
         timeSpent: {
             type: Number,
             required: true,
         },
         startDate: {
-            type: String,
+            type: Date,
             required: true,
         },
-        endDate: String,
+        endDate: Date,
         labels: {
             type: Array,
             default: [],
