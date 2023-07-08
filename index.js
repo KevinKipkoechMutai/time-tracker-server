@@ -5,6 +5,9 @@ import cors from "cors"
 import dotenv from "dotenv"
 import helmet from "helmet"
 import morgan from "morgan"
+import taskRoutes from "./routes/task.js"
+import Task from "./models/Task.js"
+import { tasks } from "./data/data.js"
 
 //Configurations
 dotenv.config()
@@ -17,6 +20,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cors())
 
+// Routes
+app.use("/task", taskRoutes)
+
 
 // Mongoose Setup
 const PORT = process.env.PORT || 9000
@@ -28,5 +34,9 @@ mongoose
     })
     .then(async () => {
         app.listen(PORT, () => console.log(`Server is running on PORT: ${PORT}`))
+
+        // Add seed data to the database once
+        // Task.insertMany(tasks)
+
     })
     .catch((error) => console.log(`${error} did not connect.`))
