@@ -53,3 +53,6 @@ router.delete("/tasks/:id", async (req, res) => {
         res.status(400).json({ message: error.message })
     }
 })
+
+//export task routes to index.js
+export default router
