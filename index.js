@@ -28,7 +28,7 @@ app.use("/task", taskRoutes)
 const PORT = process.env.PORT || 9000
 mongoose.set("strictQuery", true)
 mongoose
-    .connect(process.env.MONGO_URL, {
+    .connect('mongodb+srv://mutaikevinkip05:1234@cluster0.0lts2jp.mongodb.net/?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
