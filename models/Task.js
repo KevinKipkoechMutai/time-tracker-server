@@ -28,6 +28,12 @@ const TaskSchema = mongoose.Schema(
     { timestamps: true, toJSON: { getters: true } }
 )
 
+// TaskSchema.methods = {
+//     remove() {
+//         return this.model.deleteOne({ _id: this.id });
+//     },
+// };
+
 const Task = mongoose.model("Task", TaskSchema)
 
 export default Task
