@@ -3,6 +3,7 @@ import Task from "../models/Task.js"
 
 const router = express.Router()
 
+//Routing with inbuilt controllers
 // Get all tasks
 router.get("/tasks", async (req, res) => {
     try {
@@ -47,11 +48,15 @@ router.delete("/tasks/:id", async (req, res) => {
         if (!task) {
             throw new Error("Task not found")
         }
-        await task.remove()
+        await task.deleteOne()
         res.status(200).json({ message: "Task deleted" })
     } catch (error) {
         res.status(400).json({ message: error.message })
     }
+
+    // Log the request and response
+    console.log("Request:", req)
+    console.log("Response:", res)
 })
 
 //export task routes to index.js
