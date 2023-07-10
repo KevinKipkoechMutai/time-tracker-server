@@ -28,18 +28,22 @@ router.post("/tasks", async (req, res) => {
 // Update a task
 router.put("/tasks/:id", async (req, res) => {
     try {
-        const task = await Task.findById(req.params.id)
+        const task = await Task.findById(req.params.id);
         if (!task) {
-            throw new Error("Task not found")
+            throw new Error("Task not found");
         }
-        task.title = req.body.title
-        task.completed = req.body.completed
-        await task.save()
-        res.status(200).json(task)
+
+        task.name = req.body.name;
+        task.taskType = req.body.taskType;
+        task.timeSpent = req.body.timeSpent;
+        task.startDate = req.body.startDate;
+
+        await task.save();
+        res.status(200).json(task);
     } catch (error) {
-        res.status(400).json({ message: error.message })
+        res.status(400).json({ message: error.message });
     }
-})
+});
 
 // Delete a task
 router.delete("/tasks/:id", async (req, res) => {
